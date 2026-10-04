@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-04",
+  "prefixes": {
+    "040360": {
+      "name": "Carrefour",
+      "country": "IT",
+      "barcode": "EAN_13",
+      "category": "Supermercato",
+      "logo": "https://www.carrefour.it/favicon.ico",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
+      "codeLength": 13
+    },
+    "041140": {
+      "name": "Super A&O - Etruria Retail",
+      "country": "IT",
+      "category": "Altro",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
+      "codeLength": 13,
+      "barcode": "UPC_A",
+      "frontImage": "https://github.com/user-attachments/assets/d710d6c9-4e57-4e96-945e-80a5bfc14523"
+    },
+    "96000693": {
+      "name": "Pittarosso",
+      "country": "IT",
+      "category": "Abbigliamento",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
+      "barcode": "EAN_13"
+    }
+  }
+}
