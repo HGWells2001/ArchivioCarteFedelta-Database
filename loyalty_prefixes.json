@@ -2,13 +2,6 @@
   "schemaVersion": 1,
   "updated": "2026-10-04",
   "prefixes": {
-    "96000693": {
-      "name": "Pittarosso",
-      "country": "IT",
-      "category": "Abbigliamento",
-      "note": "Confermato tramite issue dell'app e account proprietario.",
-      "barcode": "EAN_13"
-    },
     "040360": {
       "name": "Carrefour",
       "country": "IT",
@@ -18,6 +11,15 @@
       "note": "Confermato tramite issue dell'app e account proprietario.",
       "codeLength": 13
     },
+    "040494": {
+      "name": "payback",
+      "country": "IT",
+      "category": "Altro",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
+      "codeLength": 13,
+      "barcode": "EAN_13",
+      "frontImage": "https://github.com/user-attachments/assets/4c13ee27-5f43-4bf5-b0c7-8fe4f34942e8"
+    },
     "041140": {
       "name": "Super A&O - Etruria Retail",
       "country": "IT",
@@ -26,6 +28,13 @@
       "codeLength": 13,
       "barcode": "EAN_13",
       "frontImage": "https://github.com/user-attachments/assets/d710d6c9-4e57-4e96-945e-80a5bfc14523"
+    },
+    "96000693": {
+      "name": "Pittarosso",
+      "country": "IT",
+      "category": "Abbigliamento",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
+      "barcode": "EAN_13"
     }
   }
 }
