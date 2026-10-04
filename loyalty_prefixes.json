@@ -5,10 +5,10 @@
     "040017": {
       "name": "Unieuro",
       "country": "IT",
-      "category": "Altro",
+      "category": "Elettronica",
       "note": "Confermato tramite issue dell'app e account proprietario.",
       "codeLength": 13,
-      "barcode": "UNKNOWN",
+      "barcode": "EAN_13",
       "frontImage": "https://github.com/user-attachments/assets/23da6688-da26-4a1d-a845-6c188851d944"
     },
     "040360": {
