@@ -2,6 +2,15 @@
   "schemaVersion": 1,
   "updated": "2026-10-04",
   "prefixes": {
+    "040016": {
+      "name": "Esselunga",
+      "country": "IT",
+      "category": "Supermercato",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
+      "codeLength": 13,
+      "barcode": "UNKNOWN",
+      "frontImage": "https://github.com/user-attachments/assets/0927419d-2b84-427d-bca4-d3bc7356605a"
+    },
     "040017": {
       "name": "Unieuro",
       "country": "IT",
