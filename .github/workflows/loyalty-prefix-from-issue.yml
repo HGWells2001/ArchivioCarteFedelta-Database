@@ -65,7 +65,7 @@ jobs:
           if not name or len(name) > 100:
               raise SystemExit("NAME non valido")
 
-          path = Path("data/loyalty_prefixes.json")
+          path = Path("loyalty_prefixes.json")
           data = json.loads(path.read_text(encoding="utf-8"))
           prefixes = data.setdefault("prefixes", {})
 
@@ -96,7 +96,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/loyalty_prefixes.json
+          git add loyalty_prefixes.json
           if git diff --cached --quiet; then
             exit 0
           fi
