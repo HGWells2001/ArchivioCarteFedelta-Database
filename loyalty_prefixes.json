@@ -23,8 +23,8 @@
     "041140": {
       "name": "Super A&O - Etruria Retail",
       "country": "IT",
-      "category": "Altro",
-      "note": "Confermato tramite issue dell'app e account proprietario. Codice canonico EAN-13 con zero iniziale preservato.",
+      "category": "Supermercato",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
       "codeLength": 13,
       "barcode": "EAN_13",
       "frontImage": "https://github.com/user-attachments/assets/d710d6c9-4e57-4e96-945e-80a5bfc14523"
