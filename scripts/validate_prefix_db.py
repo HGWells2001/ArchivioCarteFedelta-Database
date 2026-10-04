@@ -4,7 +4,7 @@ import re
 import sys
 from pathlib import Path
 
-DB = Path("data/loyalty_prefixes.json")
+DB = Path("loyalty_prefixes.json")
 
 def fail(message):
     print(f"ERROR: {message}", file=sys.stderr)
