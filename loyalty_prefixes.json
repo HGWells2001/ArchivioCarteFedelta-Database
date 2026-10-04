@@ -29,6 +29,15 @@
       "barcode": "EAN_13",
       "frontImage": "https://github.com/user-attachments/assets/d710d6c9-4e57-4e96-945e-80a5bfc14523"
     },
+    "960006": {
+      "name": "Pittarosso",
+      "country": "IT",
+      "category": "Abbigliamento",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
+      "codeLength": 13,
+      "barcode": "EAN_13",
+      "frontImage": "https://github.com/user-attachments/assets/8a185978-b30c-4b93-9326-52c09ad4ea3d"
+    },
     "96000693": {
       "name": "Pittarosso",
       "country": "IT",
