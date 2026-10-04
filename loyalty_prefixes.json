@@ -2,6 +2,15 @@
   "schemaVersion": 1,
   "updated": "2026-10-04",
   "prefixes": {
+    "040017": {
+      "name": "Unieuro",
+      "country": "IT",
+      "category": "Altro",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
+      "codeLength": 13,
+      "barcode": "UNKNOWN",
+      "frontImage": "https://github.com/user-attachments/assets/23da6688-da26-4a1d-a845-6c188851d944"
+    },
     "040360": {
       "name": "Carrefour",
       "country": "IT",
