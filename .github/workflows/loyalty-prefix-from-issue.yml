@@ -1,0 +1,111 @@
+name: Add loyalty prefix from owner issue
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  add-prefix:
+    if: github.actor == 'HGWells2001' && (startsWith(github.event.issue.title, '[PREFIX] ') || startsWith(github.event.issue.title, '[PHOTO] '))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Parse and update database
+        run: |
+          python3 - <<'PY'
+          import datetime
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text(encoding="utf-8"))
+          body = event["issue"].get("body") or ""
+
+          values = {}
+          for line in body.splitlines():
+              if "=" not in line:
+                  continue
+              key, value = line.split("=", 1)
+              values[key.strip().upper()] = value.strip()
+
+          prefix = values.get("PREFIX", "").upper()
+          code_length_raw = values.get("CODE_LENGTH", "").strip()
+          name = values.get("NAME", "").strip()
+          category = values.get("CATEGORY", "Altro").strip() or "Altro"
+          barcode = values.get("BARCODE", "").strip()
+          country = values.get("COUNTRY", "IT").strip().upper() or "IT"
+          is_photo = event["issue"].get("title", "").startswith("[PHOTO] ")
+
+          attachment_match = re.search(
+              r'https://(?:github\.com/user-attachments/assets|user-images\.githubusercontent\.com)/[^\s)>"\']+',
+              body
+          )
+          attachment_url = attachment_match.group(0) if attachment_match else ""
+
+          if is_photo and not attachment_url:
+              raise SystemExit("Issue PHOTO senza immagine allegata")
+
+          if not re.fullmatch(r"[0-9A-Z]+", prefix):
+              raise SystemExit("PREFIX non valido")
+          if not code_length_raw.isdigit():
+              raise SystemExit("CODE_LENGTH mancante o non valido")
+          code_length = int(code_length_raw)
+          expected_prefix_length = code_length // 2
+          if code_length < 2 or len(prefix) != expected_prefix_length:
+              raise SystemExit(
+                  f"PREFIX non valido: con codice lungo {code_length}, il prefisso deve avere {expected_prefix_length} caratteri"
+              )
+          if not name or len(name) > 100:
+              raise SystemExit("NAME non valido")
+
+          path = Path("data/loyalty_prefixes.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          prefixes = data.setdefault("prefixes", {})
+
+          existing = prefixes.get(prefix, {})
+          record = dict(existing) if isinstance(existing, dict) else {}
+          record.update({
+              "name": name,
+              "country": country,
+              "category": category,
+              "note": "Confermato tramite issue dell'app e account proprietario."
+          })
+          record["codeLength"] = code_length
+          if barcode:
+              record["barcode"] = barcode
+          if attachment_url:
+              record["frontImage"] = attachment_url
+
+          prefixes[prefix] = record
+          data["prefixes"] = dict(sorted(prefixes.items()))
+          data["updated"] = datetime.date.today().isoformat()
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+
+      - name: Validate database
+        run: python3 scripts/validate_prefix_db.py
+
+      - name: Commit database update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/loyalty_prefixes.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Add loyalty prefix from issue #${{ github.event.issue.number }}"
+          git push
+
+      - name: Confirm and close issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment "${{ github.event.issue.number }}" --body "Database condiviso aggiornato. Le app riceveranno prefisso e/o foto fronte alla prossima sincronizzazione."
+          gh issue close "${{ github.event.issue.number }}"
