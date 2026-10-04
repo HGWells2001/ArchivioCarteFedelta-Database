@@ -53,6 +53,15 @@
       "category": "Abbigliamento",
       "note": "Confermato tramite issue dell'app e account proprietario.",
       "barcode": "EAN_13"
+    },
+    "CDJE": {
+      "name": "Lotteria degli scontrini",
+      "country": "IT",
+      "category": "Altro",
+      "note": "Confermato tramite issue dell'app e account proprietario.",
+      "codeLength": 8,
+      "barcode": "UNKNOWN",
+      "frontImage": "https://github.com/user-attachments/assets/4d68f896-7e26-4960-81c2-df554bd25c0f"
     }
   }
 }
